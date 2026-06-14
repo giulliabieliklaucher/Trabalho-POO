@@ -1,6 +1,9 @@
+==============================================
+
 Trabalho de Programação Orientada a Objetos 1
 	Pedro Miguel e Giullia Bielik
-
+	
+==============================================
 [RESUMO]
 Este projeto consistem em um jogo de gerenciamento de recursos de um reino, o jogador deve conseguir manter o equilíbrio entre a população, igreja, exercito e dinheiro. Foi desenvolvido para a matéria de Programação Orientada a Objetos 1 do primeiro semestre do segundo ano do curso de ciência da computação.
 
