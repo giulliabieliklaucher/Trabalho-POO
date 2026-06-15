@@ -1,0 +1,104 @@
+<html>
+<head>
+<title>EventosSimples.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #2aacb8;}
+.s4 { color: #6aab73;}
+</style>
+</head>
+<body bgcolor="#191a1c">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+EventosSimples.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">Eventos</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">Estado</span><span class="s2">.</span><span class="s1">Estados</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">util</span><span class="s2">.</span><span class="s1">Random</span><span class="s2">;</span>
+
+<span class="s0">public class </span><span class="s1">EventosSimples </span><span class="s0">implements </span><span class="s1">Eventos</span><span class="s2">{</span>
+    <span class="s0">private </span><span class="s1">Random random </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Random</span><span class="s2">();</span>
+    <span class="s0">private int </span><span class="s1">cenario</span><span class="s2">;</span>
+
+    <span class="s0">public </span><span class="s1">EventosSimples</span><span class="s2">(){</span>
+        <span class="s1">cenario </span><span class="s2">= </span><span class="s1">random</span><span class="s2">.</span><span class="s1">nextInt</span><span class="s2">(</span><span class="s3">3</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Override</span>
+    <span class="s0">public </span><span class="s1">String getDescricao</span><span class="s2">() {</span>
+        <span class="s0">switch </span><span class="s2">(</span><span class="s1">cenario</span><span class="s2">){</span>
+            <span class="s0">case </span><span class="s3">0</span><span class="s2">: </span><span class="s0">return </span><span class="s4">&quot;Um bando de barbaros foram avistados na fronteira da cidade&quot;</span><span class="s2">;</span>
+            <span class="s0">case </span><span class="s3">1</span><span class="s2">: </span><span class="s0">return </span><span class="s4">&quot;O bisbo esta exigindo impostos extras para a construcao da nova catedral&quot;</span><span class="s2">;</span>
+            <span class="s0">case </span><span class="s3">2</span><span class="s2">: </span><span class="s0">return </span><span class="s4">&quot;O bisbo pede que envie soldados do exercito em uma cruzada para terras distantes&quot;</span><span class="s2">;</span>
+            <span class="s0">default</span><span class="s2">: </span><span class="s0">return </span><span class="s4">&quot;&quot;</span><span class="s2">;</span>
+        <span class="s2">}</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Override</span>
+    <span class="s0">public </span><span class="s1">String getOpA</span><span class="s2">() {</span>
+        <span class="s0">switch </span><span class="s2">(</span><span class="s1">cenario</span><span class="s2">){</span>
+            <span class="s0">case </span><span class="s3">0</span><span class="s2">: </span><span class="s0">return </span><span class="s4">&quot;Enviar o exercito para a fronteira&quot;</span><span class="s2">;</span>
+            <span class="s0">case </span><span class="s3">1</span><span class="s2">: </span><span class="s0">return </span><span class="s4">&quot;Pagar o bisbo&quot;</span><span class="s2">;</span>
+            <span class="s0">case </span><span class="s3">2</span><span class="s2">: </span><span class="s0">return </span><span class="s4">&quot;Enviar tropas&quot;</span><span class="s2">;</span>
+            <span class="s0">default</span><span class="s2">: </span><span class="s0">return </span><span class="s4">&quot;&quot;</span><span class="s2">;</span>
+        <span class="s2">}</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Override</span>
+    <span class="s0">public </span><span class="s1">String getOpB</span><span class="s2">() {</span>
+        <span class="s0">switch </span><span class="s2">(</span><span class="s1">cenario</span><span class="s2">){</span>
+            <span class="s0">case </span><span class="s3">0</span><span class="s2">: </span><span class="s0">return </span><span class="s4">&quot;Nao fazer nada&quot;</span><span class="s2">;</span>
+            <span class="s0">case </span><span class="s3">1</span><span class="s2">: </span><span class="s0">return </span><span class="s4">&quot;Recusar a exigencia&quot;</span><span class="s2">;</span>
+            <span class="s0">case </span><span class="s3">2</span><span class="s2">: </span><span class="s0">return </span><span class="s4">&quot;Recusar o pedido&quot;</span><span class="s2">;</span>
+            <span class="s0">default</span><span class="s2">: </span><span class="s0">return </span><span class="s4">&quot;&quot;</span><span class="s2">;</span>
+        <span class="s2">}</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Override</span>
+    <span class="s0">public void </span><span class="s1">consequencias</span><span class="s2">(</span><span class="s1">Estados estado</span><span class="s2">, </span><span class="s0">int </span><span class="s1">escolha</span><span class="s2">) {</span>
+        <span class="s1">Random random </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Random</span><span class="s2">();</span>
+        <span class="s0">int </span><span class="s1">variacao </span><span class="s2">= </span><span class="s3">10 </span><span class="s2">+ </span><span class="s1">random</span><span class="s2">.</span><span class="s1">nextInt</span><span class="s2">(</span><span class="s3">11</span><span class="s2">);</span>
+        <span class="s0">switch </span><span class="s2">(</span><span class="s1">cenario</span><span class="s2">){</span>
+            <span class="s0">case </span><span class="s3">0</span><span class="s2">:</span>
+                <span class="s0">if </span><span class="s2">(</span><span class="s1">escolha </span><span class="s2">== </span><span class="s3">1</span><span class="s2">){</span>
+                    <span class="s1">estado</span><span class="s2">.</span><span class="s1">setExercito</span><span class="s2">(</span><span class="s1">estado</span><span class="s2">.</span><span class="s1">getExercito</span><span class="s2">() - </span><span class="s1">variacao</span><span class="s2">);</span>
+                    <span class="s1">estado</span><span class="s2">.</span><span class="s1">setPopulacao</span><span class="s2">(</span><span class="s1">estado</span><span class="s2">.</span><span class="s1">getPopulacao</span><span class="s2">() + </span><span class="s1">variacao</span><span class="s2">);</span>
+                <span class="s2">} </span><span class="s0">else </span><span class="s2">{</span>
+                    <span class="s1">estado</span><span class="s2">.</span><span class="s1">setExercito</span><span class="s2">(</span><span class="s1">estado</span><span class="s2">.</span><span class="s1">getExercito</span><span class="s2">() + </span><span class="s1">variacao</span><span class="s2">);</span>
+                    <span class="s1">estado</span><span class="s2">.</span><span class="s1">setPopulacao</span><span class="s2">(</span><span class="s1">estado</span><span class="s2">.</span><span class="s1">getPopulacao</span><span class="s2">() - </span><span class="s1">variacao</span><span class="s2">);</span>
+                <span class="s2">}</span>
+                <span class="s0">break</span><span class="s2">;</span>
+
+            <span class="s0">case </span><span class="s3">1</span><span class="s2">:</span>
+                <span class="s0">if </span><span class="s2">(</span><span class="s1">escolha </span><span class="s2">== </span><span class="s3">1</span><span class="s2">){</span>
+                    <span class="s1">estado</span><span class="s2">.</span><span class="s1">setIgreja</span><span class="s2">(</span><span class="s1">estado</span><span class="s2">.</span><span class="s1">getIgreja</span><span class="s2">() + </span><span class="s1">variacao</span><span class="s2">);</span>
+                    <span class="s1">estado</span><span class="s2">.</span><span class="s1">setDinheiro</span><span class="s2">(</span><span class="s1">estado</span><span class="s2">.</span><span class="s1">getDinheiro</span><span class="s2">() - </span><span class="s1">variacao</span><span class="s2">);</span>
+                <span class="s2">} </span><span class="s0">else </span><span class="s2">{</span>
+                    <span class="s1">estado</span><span class="s2">.</span><span class="s1">setIgreja</span><span class="s2">(</span><span class="s1">estado</span><span class="s2">.</span><span class="s1">getIgreja</span><span class="s2">() - </span><span class="s1">variacao</span><span class="s2">);</span>
+                    <span class="s1">estado</span><span class="s2">.</span><span class="s1">setDinheiro</span><span class="s2">(</span><span class="s1">estado</span><span class="s2">.</span><span class="s1">getDinheiro</span><span class="s2">() + </span><span class="s1">variacao</span><span class="s2">);</span>
+                <span class="s2">}</span>
+                <span class="s0">break</span><span class="s2">;</span>
+
+            <span class="s0">case </span><span class="s3">2</span><span class="s2">:</span>
+                <span class="s0">if </span><span class="s2">(</span><span class="s1">escolha </span><span class="s2">== </span><span class="s3">1</span><span class="s2">){</span>
+                    <span class="s1">estado</span><span class="s2">.</span><span class="s1">setExercito</span><span class="s2">(</span><span class="s1">estado</span><span class="s2">.</span><span class="s1">getExercito</span><span class="s2">() - </span><span class="s1">variacao</span><span class="s2">);</span>
+                    <span class="s1">estado</span><span class="s2">.</span><span class="s1">setIgreja</span><span class="s2">(</span><span class="s1">estado</span><span class="s2">.</span><span class="s1">getIgreja</span><span class="s2">() +</span><span class="s1">variacao</span><span class="s2">);</span>
+                <span class="s2">} </span><span class="s0">else </span><span class="s2">{</span>
+                    <span class="s1">estado</span><span class="s2">.</span><span class="s1">setExercito</span><span class="s2">(</span><span class="s1">estado</span><span class="s2">.</span><span class="s1">getExercito</span><span class="s2">() + </span><span class="s1">variacao</span><span class="s2">);</span>
+                    <span class="s1">estado</span><span class="s2">.</span><span class="s1">setIgreja</span><span class="s2">(</span><span class="s1">estado</span><span class="s2">.</span><span class="s1">getIgreja</span><span class="s2">() - </span><span class="s1">variacao</span><span class="s2">);</span>
+                <span class="s2">}</span>
+                <span class="s0">break</span><span class="s2">;</span>
+
+            <span class="s0">default</span><span class="s2">:</span>
+        <span class="s2">}</span>
+    <span class="s2">}</span>
+<span class="s2">}</span>
+</pre>
+</body>
+</html>
