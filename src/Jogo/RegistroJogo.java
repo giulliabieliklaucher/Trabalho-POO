@@ -19,7 +19,7 @@ public class RegistroJogo {
 
 
 
-    // CLASSE INTERNA PARA CADA TURNO
+    
     public static class RegistroTurno {
         private final int turno;
         private final String eventoDescricao;
