@@ -14,12 +14,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-
 public class RegistroJogo {
 
 
 
-    // CLASSE INTERNA PARA CADA TURNO
     public static class RegistroTurno {
         private final int turno;
         private final String eventoDescricao;
@@ -60,13 +58,13 @@ public class RegistroJogo {
         public int getIgrejaDepois()       { return igrejaDepois; }
     }
 
-    // ========== REGISTRO PRINCIPAL ==========
+
     private final String nomeRei;
     private final List<RegistroTurno> historico;
     private int turnoFinal;
     private String motivoDerrota;
 
-    // Estado antes do turno (salvo temporariamente)
+
     private int dinheiroAntes, populacaoAntes, exercitoAntes, igrejaAntes;
     private String eventoAtual;
     private int escolhaEventoAtual;
@@ -78,7 +76,7 @@ public class RegistroJogo {
         this.motivoDerrota = "";
     }
 
-    // ========== SALVAR ESTADO ANTES DO TURNO ==========
+
     public void salvarEstadoAntes(Estados estado) {
         this.dinheiroAntes   = estado.getDinheiro();
         this.populacaoAntes  = estado.getPopulacao();
@@ -86,13 +84,13 @@ public class RegistroJogo {
         this.igrejaAntes     = estado.getIgreja();
     }
 
-    // ========== SALVAR EVENTO DO TURNO ==========
+
     public void salvarEvento(Eventos evento, int escolha) {
         this.eventoAtual       = evento.getDescricao();
         this.escolhaEventoAtual = escolha;
     }
 
-    // ========== REGISTRAR TURNO COMPLETO ==========
+
     public void registrarTurno(int turno, Politica politica, Estados estadoDepois) {
         historico.add(new RegistroTurno(
                 turno,
@@ -105,21 +103,26 @@ public class RegistroJogo {
         ));
     }
 
-    // ========== REGISTRAR FIM DE JOGO ==========
+
     public void registrarFimDeJogo(int turno, Estados estado) {
         this.turnoFinal = turno;
 
-        if (estado.getDinheiro() <= 0)       motivoDerrota = " O reino faliu!";
-        else if (estado.getDinheiro() >= estado.getMax()) motivoDerrota = " A riqueza corrompeu o reino!";
-        else if (estado.getPopulacao() <= 0) motivoDerrota = "O povo foi dizimado!";
-        else if (estado.getPopulacao() >= estado.getMax()) motivoDerrota = " O povo tomou o poder!";
-        else if (estado.getExercito() <= 0)  motivoDerrota = " O exército foi destruído!";
-        else if (estado.getExercito() >= estado.getMax()) motivoDerrota = " Os generais tomaram o trono!";
-        else if (estado.getIgreja() <= 0)    motivoDerrota = "A fé foi perdida!";
-        else if (estado.getIgreja() >= estado.getMax())   motivoDerrota = " A igreja assumiu o controle!";
+        List<FimDeJogo> finais = new ArrayList<>();
+        finais.add(new FinalDinheiro(estado));
+        finais.add(new FinalMilitar(estado));
+        finais.add(new FinalPopulacao(estado));
+        finais.add(new FinalReligiao(estado));
+
+        for (FimDeJogo f : finais) {
+            String descricao = f.descricao();
+            if (!descricao.isEmpty()) {
+                this.motivoDerrota = descricao;
+                break;
+            }
+        }
     }
 
-    // ========== EXIBIR HISTÓRICO ==========
+
     public void exibirHistorico() {
         System.out.println("\n========================================");
         System.out.println("  HISTÓRICO DO REINO — Rei " + nomeRei);
@@ -141,7 +144,7 @@ public class RegistroJogo {
         }
     }
 
-    // ========== EXIBIR PONTUAÇÃO FINAL ==========
+
     public void exibirPontuacaoFinal() {
         System.out.println("\n========================================");
         System.out.println("            FIM DE JOGO");
@@ -153,7 +156,7 @@ public class RegistroJogo {
         System.out.println("========================================");
     }
 
-    // ========== CALCULAR PONTUAÇÃO ==========
+
     private int calcularPontuacao() {
         // 100 pontos por turno sobrevivido
         return turnoFinal * 100;

@@ -5,6 +5,10 @@ import Estado.Estados;
 public class FinalReligiao extends FimDeJogo{
     private Estados estado;
 
+    public FinalReligiao(Estados estado) {
+        this.estado = estado;
+    }
+
     @Override
     public String descricao() {
         if(estado.getIgreja() <= 0){

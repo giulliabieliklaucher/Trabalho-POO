@@ -5,6 +5,10 @@ import Estado.Estados;
 public class FinalPopulacao extends FimDeJogo{
     Estados estado;
 
+    public FinalPopulacao(Estados estado) {
+        this.estado = estado;
+    }
+
     @Override
     public String descricao() {
         if(estado.getPopulacao() <= 0){

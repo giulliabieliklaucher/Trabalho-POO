@@ -28,28 +28,28 @@ public class Turno {
         this.scanner = scanner;
     }
 
-    // ========== EXECUTA UM TURNO COMPLETO ==========
+
     public void executar(boolean oferecerPolitica) {
         System.out.println("\n==============================");
         System.out.println("  TURNO " + rei.getTurno() + " — Rei " + rei.getNome());
         System.out.println("==============================");
         mostrarEstado();
 
-        // Salva estado antes do turno
+
         registro.salvarEstadoAntes(rei.getEstado());
 
-        // 1. Resolve evento
+
         Eventos evento = resolverEvento();
 
         if (rei.getEstado().fimDeJogo()) return;
 
-        // 2. A cada N turnos oferece política
+
         Politica politica = null;
         if (oferecerPolitica) {
             politica = escolherPolitica();
         }
 
-        // Registra o turno
+
         if (politica != null) {
             registro.registrarTurno(rei.getTurno(), politica, rei.getEstado());
         }
@@ -57,7 +57,7 @@ public class Turno {
         rei.proxTurno();
     }
 
-    // ========== EVENTO ==========
+
     private Eventos resolverEvento() {
         Eventos evento = gerenciadorEventos.sortearEventos();
 
@@ -76,7 +76,7 @@ public class Turno {
         return evento;
     }
 
-    // ========== POLÍTICA ==========
+
     private Politica escolherPolitica() {
         List<Politica> lista = gerenciadorPoliticas.getPoliticasDisponiveis();
 
@@ -101,7 +101,7 @@ public class Turno {
         return politica;
     }
 
-    // ========== ESTADO ==========
+
     private void mostrarEstado() {
         Estados e = rei.getEstado();
         System.out.println("\n--- Estado do Reino ---");
@@ -112,7 +112,7 @@ public class Turno {
         System.out.println("-----------------------");
     }
 
-    // ========== UTILITÁRIO ==========
+
     private int lerEscolha(int min, int max) {
         int escolha = -1;
         while (escolha < min || escolha > max) {

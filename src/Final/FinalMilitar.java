@@ -5,6 +5,10 @@ import Estado.Estados;
 public class FinalMilitar extends FimDeJogo{
     private Estados estado;
 
+    public FinalMilitar(Estados estado) {
+        this.estado = estado;
+    }
+
     @Override
     public String descricao() {
         if(estado.getExercito() <= 0){
